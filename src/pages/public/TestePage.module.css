@@ -1,0 +1,224 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-obsidian);
+  display: flex;
+  flex-direction: column;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(200,169,110,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(74,144,217,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header {
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-obsidian);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.userName {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Progress */
+.progressSection {
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progressLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.progressPct {
+  font-size: 13px;
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.progressDots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+  transition: all 0.3s var(--ease-out);
+}
+
+.dotDone {
+  background: var(--color-gold-dim);
+  width: 12px;
+}
+
+.dotCurrent {
+  background: var(--color-gold);
+  width: 20px;
+}
+
+/* Question Card */
+.questionCard {
+  width: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.animatingIn {
+  animation: fadeIn 0.35s var(--ease-out) both;
+}
+
+.animatingOut {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.questionNumber {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(200,169,110,0.12);
+  line-height: 1;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.questionText {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 36px;
+  line-height: 1.4;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+  text-align: left;
+  animation: fadeIn 0.4s var(--ease-out) both;
+}
+
+.option:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(200,169,110,0.25);
+  transform: translateX(4px);
+}
+
+.optionSelected {
+  border-color: var(--disc-color, var(--color-gold)) !important;
+  background: rgba(200,169,110,0.06) !important;
+}
+
+.optionLetter {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  min-width: 28px;
+  flex-shrink: 0;
+}
+
+.optionText {
+  font-size: 15px;
+  color: var(--text-primary);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.optionCheck {
+  color: var(--color-gold);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .questionCard { padding: 28px 20px; }
+  .questionText { font-size: 18px; }
+  .main { padding: 24px 16px 60px; }
+}

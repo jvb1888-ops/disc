@@ -1,0 +1,279 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-obsidian);
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.header {
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-obsidian);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Hero */
+.heroSection {
+  text-align: center;
+  animation: fadeIn 0.6s var(--ease-out) both;
+}
+
+.successBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(82, 200, 122, 0.1);
+  border: 1px solid rgba(82, 200, 122, 0.3);
+  color: var(--disc-s);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.nameGreet {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.heroTitle {
+  font-size: 22px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.perfilHero {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid var(--perfil-color, var(--color-gold));
+  border-radius: var(--radius-xl);
+  padding: 24px 40px;
+  box-shadow: 0 0 60px -10px var(--perfil-color, var(--color-gold));
+}
+
+.perfilEmoji {
+  font-size: 40px;
+}
+
+.perfilLetter {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--perfil-color, var(--color-gold));
+  line-height: 1;
+}
+
+.perfilInfo {
+  text-align: left;
+}
+
+.perfilNome {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.perfilTitulo {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Sections */
+.section {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  animation: fadeIn 0.5s var(--ease-out) 0.2s both;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+/* Percentuais */
+.percentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.percentCard {
+  text-align: center;
+}
+
+.percentValue {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.percentBar {
+  height: 6px;
+  background: var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.percentFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s var(--ease-out);
+}
+
+.percentName {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Two columns */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Chart */
+.chartWrap {
+  margin: 0 -8px;
+}
+
+/* Description */
+.descricao {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* List */
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.listIcon {
+  flex-shrink: 0;
+  font-size: 8px;
+  margin-top: 6px;
+}
+
+/* Tags */
+.tagsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* CTA */
+.ctaSection {
+  animation: fadeIn 0.5s var(--ease-out) 0.4s both;
+}
+
+.ctaCard {
+  background: linear-gradient(135deg, rgba(200,169,110,0.08), rgba(200,169,110,0.03));
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  text-align: center;
+}
+
+.ctaCard h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.ctaCard p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .percentGrid { grid-template-columns: repeat(2, 1fr); }
+  .twoCol { grid-template-columns: 1fr; }
+  .perfilHero { flex-direction: column; text-align: center; padding: 24px; }
+  .perfilInfo { text-align: center; }
+  .ctaCard { padding: 28px 20px; }
+  .main { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .perfilLetter { font-size: 48px; }
+  .section { padding: 20px; }
+}

@@ -1,0 +1,142 @@
+.page {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1400px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pageHeader h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.pageHeader p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Filters */
+.filtersRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  min-width: 260px;
+  flex: 1;
+}
+
+.filterSelect {
+  width: auto;
+  min-width: 180px;
+}
+
+.filterDate {
+  width: auto;
+  min-width: 140px;
+}
+
+/* Table Card */
+.tableCard {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tableLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.rowSelected td {
+  background: rgba(200, 169, 110, 0.04) !important;
+}
+
+.leadName {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.pending {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.consentYes {
+  color: var(--disc-s);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.consentNo {
+  color: #ff6b6b;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.rowActions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.paginationInfo {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.paginationBtns {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pageActive {
+  background: rgba(200, 169, 110, 0.12) !important;
+  color: var(--color-gold) !important;
+}
+
+@media (max-width: 900px) {
+  .page { padding: 16px; }
+  .searchInput { min-width: 100%; }
+  .filtersRow { flex-direction: column; align-items: stretch; }
+  .filterSelect, .filterDate { width: 100%; min-width: unset; }
+}

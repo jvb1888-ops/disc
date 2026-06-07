@@ -1,0 +1,321 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background */
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgCircle1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: -200px;
+  right: -200px;
+  background: radial-gradient(circle, rgba(200, 169, 110, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.bgCircle2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(74, 144, 217, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200, 169, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 169, 110, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Header */
+.header {
+  position: relative;
+  z-index: 10;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.headerLogo b {
+  color: var(--color-gold);
+}
+
+.headerLogoIcon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-obsidian);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+/* Main */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 0;
+  min-height: calc(80vh - 80px);
+}
+
+.heroContent { animation: fadeIn 0.6s var(--ease-out) both; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(200, 169, 110, 0.08);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-gold);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.heroTitle {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.featureItem span:first-child {
+  font-size: 18px;
+}
+
+/* DISC Visual */
+.heroVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInScale 0.7s var(--ease-out) 0.2s both;
+}
+
+.discCircle {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.discQuadrant {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background 0.3s;
+  cursor: default;
+}
+
+.discQuadrant:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.discLetter {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.discName {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.discCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: var(--color-obsidian);
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+  z-index: 10;
+}
+
+/* Form Section */
+.formSection {
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.formCard {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  width: 100%;
+  max-width: 640px;
+  animation: fadeIn 0.6s var(--ease-out) 0.3s both;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.formHeader h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.formHeader p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.consentBox {
+  background: rgba(200, 169, 110, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.consentText {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.errorMsg {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: 4px;
+  display: block;
+}
+
+.apiError {
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid var(--color-border);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    text-align: center;
+  }
+  .heroSubtitle { margin: 0 auto 36px; }
+  .heroVisual { justify-content: center; }
+  .discCircle { width: 260px; height: 260px; }
+  .features { align-items: center; }
+  .header { padding: 16px 20px; }
+  .main { padding: 0 20px; }
+}
+
+@media (max-width: 600px) {
+  .formCard { padding: 28px 20px; }
+  .formGrid { grid-template-columns: 1fr; }
+}

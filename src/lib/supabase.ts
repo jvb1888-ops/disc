@@ -1,34 +1,22 @@
 import { createClient } from '@supabase/supabase-js'
 
-// A integração Vercel+Supabase injeta SUPABASE_URL e SUPABASE_ANON_KEY (sem VITE_).
-// O Vite expõe apenas variáveis com prefixo VITE_ para o browser.
-// Por isso lemos as duas variações e usamos a que estiver preenchida.
-const rawUrl = (
-  import.meta.env.VITE_SUPABASE_URL ||
-  import.meta.env.VITE_PUBLIC_SUPABASE_URL ||
-  ''
+// ─── CONFIGURAÇÃO DIRETA ──────────────────────────────────────────────────
+// As keys estão definidas aqui diretamente para garantir funcionamento.
+// A anon key é segura para ficar no frontend — ela é pública por design.
+// O que protege os dados é o RLS (Row Level Security) no Supabase.
+const SUPABASE_URL = 'https://hexckqodwlvzqvvxthxc.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhleGNrcW9kd2x2enF2dnh0aHhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA4MjYsImV4cCI6MjA5NjQyNjgyNn0.MMQquU2wWWOqEtfw665_5Z-G-NX_msM9usecYhgw270'
+
+// Lê das variáveis de ambiente se disponíveis, caso contrário usa os valores acima
+const supabaseUrl = (
+  (import.meta.env.VITE_SUPABASE_URL as string) || SUPABASE_URL
+).trim().replace(/\/rest\/v1\/?.*$/, '').replace(/\/$/, '')
+
+const supabaseAnonKey = (
+  (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || SUPABASE_ANON_KEY
 ).trim()
 
-const rawKey = (
-  import.meta.env.VITE_SUPABASE_ANON_KEY ||
-  import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY ||
-  ''
-).trim()
-
-if (!rawUrl || !rawKey) {
-  throw new Error(
-    '[DISC] Variáveis de ambiente do Supabase não encontradas.\n' +
-    'Certifique-se de que VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY ' +
-    'estão configuradas na Vercel com o prefixo VITE_.'
-  )
-}
-
-// Remove sufixos incorretos que podem ter sido colados por engano
-const supabaseUrl = rawUrl
-  .replace(/\/rest\/v1\/?.*$/, '')
-  .replace(/\/$/, '')
-
-export const supabase = createClient(supabaseUrl, rawKey, {
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -36,8 +24,8 @@ export const supabase = createClient(supabaseUrl, rawKey, {
   },
   global: {
     headers: {
-      apikey: rawKey,
-      Authorization: `Bearer ${rawKey}`,
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`,
     },
   },
 })

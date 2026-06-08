@@ -3,7 +3,6 @@ import { AuthProvider } from './hooks/useAuth'
 import LandingPage from './pages/public/LandingPage'
 import TestePage from './pages/public/TestePage'
 import ResultadoPage from './pages/public/ResultadoPage'
-import DiagnosticoPage from './pages/public/DiagnosticoPage'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminLeads from './pages/admin/AdminLeads'
@@ -15,15 +14,9 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/teste" element={<TestePage />} />
           <Route path="/resultado" element={<ResultadoPage />} />
-
-          {/* Diagnostic — remove after confirming connection works */}
-          <Route path="/diagnostico" element={<DiagnosticoPage />} />
-
-          {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin"
@@ -36,8 +29,6 @@ export default function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="leads" element={<AdminLeads />} />
           </Route>
-
-          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

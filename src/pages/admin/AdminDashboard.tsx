@@ -195,10 +195,10 @@ export default function AdminDashboard() {
                   <td>
                     {lead.perfil_disc
                       ? <span className={`badge badge-${lead.perfil_disc.toLowerCase()}`}>{lead.perfil_disc}</span>
-                      : <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>—</span>
+                      : <span style={{ color: 'var(--text-secondary)', fontSize: 13 }}>—</span>
                     }
                   </td>
-                  <td style={{ color: 'var(--text-muted)', fontSize: 13 }}>
+                  <td style={{ color: 'var(--text-secondary)', fontSize: 13 }}>
                     {new Date(lead.created_at).toLocaleDateString('pt-BR')}
                   </td>
                 </tr>

@@ -262,7 +262,7 @@ export default function AdminLeads() {
                           {lead.consentimento ? '✓ Sim' : '✕ Não'}
                         </span>
                       </td>
-                      <td style={{ color: 'var(--text-muted)', fontSize: 13 }}>
+                      <td style={{ color: 'var(--text-primary)', fontSize: 13 }}>
                         {new Date(lead.created_at).toLocaleDateString('pt-BR')}
                       </td>
                       <td>

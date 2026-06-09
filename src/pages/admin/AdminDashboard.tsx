@@ -129,7 +129,13 @@ export default function AdminDashboard() {
                 </Pie>
                 <Tooltip
                   formatter={(val: number) => [val, 'Participantes']}
-                  contentStyle={{ background: 'var(--color-card)', border: '1px solid var(--color-border)', borderRadius: 8 }}
+                  contentStyle={{
+                    background: '#1e1e35',
+                    border: '1px solid rgba(200,169,110,0.3)',
+                    borderRadius: 8,
+                  }}
+                  labelStyle={{ color: '#f0ede8', fontWeight: 600 }}
+                  itemStyle={{ color: '#c8a96e' }}
                 />
               </PieChart>
             </ResponsiveContainer>

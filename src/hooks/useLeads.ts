@@ -17,6 +17,25 @@ export interface LeadsState {
   error: string | null
 }
 
+// URL da Edge Function — substitui chamadas diretas à tabela para anon
+const FUNCTION_URL = 'https://hexckqodwlvzqvvxthxc.supabase.co/functions/v1/insert-lead'
+const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhleGNrcW9kd2x2enF2dnh0aHhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA4MjYsImV4cCI6MjA5NjQyNjgyNn0.MMQquU2wWWOqEtfw665_5Z-G-NX_msM9usecYhgw270'
+
+async function callFunction(action: string, payload: unknown) {
+  const res = await fetch(FUNCTION_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${ANON_KEY}`,
+      'apikey': ANON_KEY,
+    },
+    body: JSON.stringify({ action, payload }),
+  })
+  const json = await res.json()
+  if (!res.ok) throw new Error(json.error || 'Erro na função')
+  return json
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function rowToLead(row: any): Lead {
   return {
@@ -54,18 +73,12 @@ export function useLeads() {
       if (filters.search) {
         query = query.or(`nome.ilike.%${filters.search}%,email.ilike.%${filters.search}%`)
       }
-      if (filters.perfil) {
-        query = query.eq('perfil_disc', filters.perfil)
-      }
+      if (filters.perfil) query = query.eq('perfil_disc', filters.perfil)
       if (filters.consentimento !== '') {
         query = query.eq('consentimento', filters.consentimento === 'true')
       }
-      if (filters.dataInicio) {
-        query = query.gte('created_at', filters.dataInicio)
-      }
-      if (filters.dataFim) {
-        query = query.lte('created_at', filters.dataFim + 'T23:59:59')
-      }
+      if (filters.dataInicio) query = query.gte('created_at', filters.dataInicio)
+      if (filters.dataFim) query = query.lte('created_at', filters.dataFim + 'T23:59:59')
 
       query = query.order(sortColumn as string, { ascending: sortDir === 'asc' })
       query = query.range(page * pageSize, (page + 1) * pageSize - 1)
@@ -91,16 +104,7 @@ export function useLeads() {
     if (error) throw new Error(error.message)
   }, [])
 
-  // ─── FLUXO PÚBLICO ────────────────────────────────────────────────────────
-  // Etapa 1: salva dados pessoais (sem resultado) — retorna o ID temporário.
-  // O ID é passado via React Router state para a página do teste.
-  // Etapa 2: ao terminar, updateLeadResult salva o resultado DISC.
-  //
-  // IMPORTANTE: O SQL precisa ter a policy "leads_update_anon" para permitir
-  // que o usuário anônimo atualize o seu próprio registro.
-  // Execute o script SQL adicional abaixo no Supabase se necessário.
-  // ──────────────────────────────────────────────────────────────────────────
-
+  // INSERT via Edge Function (usa service_role no servidor — seguro)
   const createLead = useCallback(async (data: {
     nome: string
     email: string
@@ -108,35 +112,21 @@ export function useLeads() {
     consentimento: boolean
     data_hora_consentimento: string
   }) => {
-    const { data: result, error } = await supabase
-      .from('leads')
-      .insert([{
-        nome: data.nome,
-        email: data.email,
-        telefone: data.telefone,
-        consentimento: data.consentimento,
-        data_hora_consentimento: data.data_hora_consentimento,
-        perfil_disc: null,
-        resultado_disc: null,
-      }])
-      .select()
-      .single()
-
-    if (error) throw new Error(error.message)
-    return rowToLead(result)
+    const result = await callFunction('insert_lead', {
+      nome: data.nome,
+      email: data.email,
+      telefone: data.telefone,
+      consentimento: data.consentimento,
+      data_hora_consentimento: data.data_hora_consentimento,
+      perfil_disc: null,
+      resultado_disc: null,
+    })
+    return rowToLead(result.data)
   }, [])
 
+  // UPDATE via Edge Function (usa service_role no servidor — seguro)
   const updateLeadResult = useCallback(async (id: string, resultado: ResultadoDisc) => {
-    const { error } = await supabase
-      .from('leads')
-      .update({
-        perfil_disc: resultado.perfil_predominante,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        resultado_disc: resultado as any,
-      })
-      .eq('id', id)
-
-    if (error) throw new Error(error.message)
+    await callFunction('update_lead', { id, resultado })
   }, [])
 
   return { ...state, fetchLeads, deleteLead, deleteLeads, createLead, updateLeadResult }

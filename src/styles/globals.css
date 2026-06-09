@@ -441,3 +441,21 @@ tr:hover td {
   .modal { padding: 24px; }
   .container { padding: 0 16px; }
 }
+
+/* Select dropdown options — força tema escuro em todos os browsers */
+select.form-input {
+  color-scheme: dark;
+}
+
+select.form-input option {
+  background-color: #1e1e35;
+  color: #f0ede8;
+  padding: 8px 12px;
+}
+
+select.form-input option:hover,
+select.form-input option:focus,
+select.form-input option:checked {
+  background-color: #2a2a45;
+  color: #c8a96e;
+}

@@ -89,7 +89,7 @@ export default function LandingPage() {
               <span className="text-gold">Perfil DISC</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Em apenas 10 minutos, compreenda seu estilo de comportamento,
+              Em apenas 5 minutos, compreenda seu estilo de comportamento,
               suas forças e como potencializar seus resultados pessoais e profissionais.
             </p>
 

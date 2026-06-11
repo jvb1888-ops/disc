@@ -116,8 +116,6 @@ export function useLeads() {
       nome: data.nome,
       email: data.email,
       telefone: data.telefone,
-      consentimento: data.consentimento,
-      data_hora_consentimento: data.data_hora_consentimento,
       perfil_disc: null,
       resultado_disc: null,
     })

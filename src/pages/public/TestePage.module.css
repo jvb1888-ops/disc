@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   position: relative;
   z-index: 10;
 }
@@ -30,8 +31,29 @@
   gap: 10px;
 }
 
-.headerLogo {
-  height: 44px;
+.logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-obsidian);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.headerLogoDna {
+  height: 48px;
   width: auto;
   object-fit: contain;
 }

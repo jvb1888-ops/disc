@@ -45,11 +45,12 @@
 .header {
   position: relative;
   z-index: 10;
-  padding: 20px 40px;
+  padding: 16px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
+  min-height: 100px;
 }
 
 .headerLogo {
@@ -79,9 +80,10 @@
 }
 
 .headerLogoDna {
-  height: 52px;
+  height: 80px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(200,169,110,0.2));
 }
 
 /* Main */
@@ -305,27 +307,27 @@
 .footer {
   position: relative;
   z-index: 1;
-  text-align: center;
-  padding: 32px;
+  padding: 28px 40px;
   border-top: 1px solid var(--color-border);
-  color: var(--text-muted);
-  font-size: 13px;
+  color: var(--text-secondary);
+  font-size: 14px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .footerLogo {
-  height: 90px;
+  height: 80px;
   width: auto;
   object-fit: contain;
-  opacity: 0.9;
+  opacity: 1;
   transition: opacity 0.2s;
 }
 
 .footerLogo:hover {
-  opacity: 1;
+  opacity: 0.85;
 }
 
 @media (max-width: 900px) {

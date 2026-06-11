@@ -71,7 +71,11 @@ export default function LandingPage() {
       </div>
 
       <header className={styles.header}>
-        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogo} />
+        <div className={styles.headerLogo}>
+          <span className={styles.headerLogoIcon}>D</span>
+          <span>DISC<b>Assessment</b></span>
+        </div>
+        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogoDna} />
       </header>
 
       <main className={styles.main}>

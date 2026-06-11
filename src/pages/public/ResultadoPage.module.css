@@ -19,10 +19,32 @@
   gap: 10px;
   position: relative;
   z-index: 10;
+  justify-content: flex-start;
 }
 
-.headerLogo {
-  height: 44px;
+.logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-obsidian);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.headerLogoDna {
+  margin-left: auto;
+  height: 48px;
   width: auto;
   object-fit: contain;
 }
@@ -279,10 +301,10 @@
 }
 
 .footerLogo {
-  height: 60px;
+  height: 90px;
   width: auto;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity 0.2s;
 }
 

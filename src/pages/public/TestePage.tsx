@@ -75,8 +75,10 @@ export default function TestePage() {
 
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogo} />
+          <div className={styles.logo}>D</div>
+          <span className={styles.logoText}>DISC Assessment</span>
         </div>
+        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogoDna} />
         {nome && <span className={styles.userName}>Olá, {nome.split(' ')[0]} 👋</span>}
       </header>
 

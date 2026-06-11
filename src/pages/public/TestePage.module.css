@@ -15,7 +15,7 @@
 }
 
 .header {
-  padding: 12px 32px;
+  padding: 20px 32px;
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@
   gap: 16px;
   position: relative;
   z-index: 10;
-  min-height: 96px;
+  min-height: 220px;
 }
 
 .headerLeft {
@@ -54,7 +54,7 @@
 }
 
 .headerLogoDna {
-  height: 80px;
+  height: 180px;
   width: auto;
   object-fit: contain;
 }

@@ -7,14 +7,12 @@ interface FormData {
   nome: string
   email: string
   telefone: string
-  consentimento: boolean
 }
 
 interface FormErrors {
   nome?: string
   email?: string
   telefone?: string
-  consentimento?: string
 }
 
 function formatTelefone(value: string): string {
@@ -28,9 +26,7 @@ function formatTelefone(value: string): string {
 export default function LandingPage() {
   const navigate = useNavigate()
   const { createLead } = useLeads()
-  const [form, setForm] = useState<FormData>({
-    nome: '', email: '', telefone: '', consentimento: false,
-  })
+  const [form, setForm] = useState<FormData>({ nome: '', email: '', telefone: '' })
   const [errors, setErrors] = useState<FormErrors>({})
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState<string | null>(null)
@@ -41,7 +37,6 @@ export default function LandingPage() {
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'E-mail inválido.'
     const digits = form.telefone.replace(/\D/g, '')
     if (digits.length < 10) e.telefone = 'Telefone inválido.'
-    if (!form.consentimento) e.consentimento = 'É necessário dar consentimento para continuar.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -69,7 +64,6 @@ export default function LandingPage() {
 
   return (
     <div className={styles.page}>
-      {/* Background decoration */}
       <div className={styles.bg}>
         <div className={styles.bgCircle1} />
         <div className={styles.bgCircle2} />
@@ -77,10 +71,7 @@ export default function LandingPage() {
       </div>
 
       <header className={styles.header}>
-        <div className={styles.headerLogo}>
-          <span className={styles.headerLogoIcon}>D</span>
-          <span>DISC<b>Assessment</b></span>
-        </div>
+        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogo} />
       </header>
 
       <main className={styles.main}>
@@ -191,27 +182,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className={styles.consentBox}>
-                <label className="checkbox-wrap">
-                  <input
-                    type="checkbox"
-                    checked={form.consentimento}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setForm(prev => ({ ...prev, consentimento: e.target.checked }))
-                      setErrors(prev => ({ ...prev, consentimento: undefined }))
-                    }}
-                  />
-                  <span className={styles.consentText}>
-                    Autorizo o armazenamento dos meus dados para recebimento do resultado do teste DISC
-                    e para contato relacionado aos serviços oferecidos pela empresa.
-                  </span>
-                </label>
-                {errors.consentimento && <span className={styles.errorMsg}>{errors.consentimento}</span>}
-              </div>
-
-              {apiError && (
-                <div className={styles.apiError}>{apiError}</div>
-              )}
+              {apiError && <div className={styles.apiError}>{apiError}</div>}
 
               <button
                 type="submit"
@@ -219,11 +190,7 @@ export default function LandingPage() {
                 disabled={loading}
                 style={{ width: '100%', padding: '16px', fontSize: '16px', marginTop: '8px' }}
               >
-                {loading ? (
-                  <><div className="spinner" /> Salvando...</>
-                ) : (
-                  <>Iniciar Avaliação DISC →</>
-                )}
+                {loading ? <><div className="spinner" /> Salvando...</> : <>Iniciar Avaliação DISC →</>}
               </button>
             </form>
           </div>
@@ -231,7 +198,8 @@ export default function LandingPage() {
       </main>
 
       <footer className={styles.footer}>
-        <p>© {new Date().getFullYear()} DISC Assessment · Todos os direitos reservados</p>
+        <img src="/logo-instituto.png" alt="Instituto Corporativo Hugo Almeida" className={styles.footerLogo} />
+        <p>© {new Date().getFullYear()} DNA Comercial · Todos os direitos reservados</p>
       </footer>
     </div>
   )

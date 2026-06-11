@@ -39,9 +39,6 @@ function validatePayload(payload: Record<string, unknown>): string | null {
   if (!payload.telefone || typeof payload.telefone !== 'string' || !isValidPhone(payload.telefone)) {
     return 'Telefone inválido.'
   }
-  if (!payload.consentimento) {
-    return 'Consentimento obrigatório.'
-  }
   return null
 }
 
@@ -98,8 +95,6 @@ serve(async (req) => {
           nome: String(payload.nome).trim(),
           email: String(payload.email).trim().toLowerCase(),
           telefone: String(payload.telefone).trim(),
-          consentimento: Boolean(payload.consentimento),
-          data_hora_consentimento: payload.data_hora_consentimento || new Date().toISOString(),
           perfil_disc: null,
           resultado_disc: null,
         }])

@@ -41,7 +41,9 @@ export default function ResultadoPage() {
       <div className={styles.bg} />
 
       <header className={styles.header}>
-        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogo} />
+        <div className={styles.logo}>D</div>
+        <span className={styles.logoText}>DISC Assessment</span>
+        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogoDna} />
       </header>
 
       <main className={styles.main}>

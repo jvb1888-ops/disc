@@ -137,11 +137,12 @@ export default function ResultadoPage() {
                   />
                   <Tooltip
                     contentStyle={{
-                      background: 'var(--color-card)',
-                      border: '1px solid var(--color-border)',
+                      background: '#1e1e35',
+                      border: '1px solid rgba(200,169,110,0.3)',
                       borderRadius: '8px',
-                      color: 'var(--text-primary)',
                     }}
+                    labelStyle={{ color: '#f0ede8', fontWeight: 600 }}
+                    itemStyle={{ color: '#c8a96e' }}
                     formatter={(val: number) => [`${val}%`, 'Pontuação']}
                   />
                   <Bar dataKey="value" radius={[6, 6, 0, 0]}>

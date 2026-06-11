@@ -13,13 +13,7 @@
 }
 
 .bgCircle1 {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  top: -200px;
-  right: -200px;
-  background: radial-gradient(circle, rgba(200, 169, 110, 0.06) 0%, transparent 70%);
-  border-radius: 50%;
+  display: none;
 }
 
 .bgCircle2 {

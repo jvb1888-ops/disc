@@ -41,8 +41,7 @@ export default function ResultadoPage() {
       <div className={styles.bg} />
 
       <header className={styles.header}>
-        <div className={styles.logo}>D</div>
-        <span className={styles.logoText}>DISC Assessment</span>
+        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogo} />
       </header>
 
       <main className={styles.main}>
@@ -228,6 +227,11 @@ export default function ResultadoPage() {
           </div>
         </section>
       </main>
+
+      <footer className={styles.footer}>
+        <img src="/logo-instituto.png" alt="Instituto Corporativo Hugo Almeida" className={styles.footerLogo} />
+        <p>© {new Date().getFullYear()} DNA Comercial · Todos os direitos reservados</p>
+      </footer>
     </div>
   )
 }

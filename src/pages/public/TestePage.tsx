@@ -120,12 +120,9 @@ export default function TestePage() {
                 onClick={() => handleSelect(opcao.perfil)}
                 style={{
                   animationDelay: `${idx * 0.06}s`,
-                  '--disc-color': getColor(opcao.perfil),
+                  '--disc-color': 'var(--color-gold)',
                 } as React.CSSProperties}
               >
-                <span className={styles.optionLetter} style={{ color: getColor(opcao.perfil) }}>
-                  {opcao.perfil}
-                </span>
                 <span className={styles.optionText}>{opcao.texto}</span>
                 {selected === opcao.perfil && (
                   <span className={styles.optionCheck}>✓</span>
@@ -162,14 +159,4 @@ export default function TestePage() {
       </main>
     </div>
   )
-}
-
-function getColor(perfil: DiscProfile): string {
-  const map: Record<DiscProfile, string> = {
-    D: 'var(--disc-d)',
-    I: 'var(--disc-i)',
-    S: 'var(--disc-s)',
-    C: 'var(--disc-c)',
-  }
-  return map[perfil]
 }

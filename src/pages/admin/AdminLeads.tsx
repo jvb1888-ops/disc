@@ -17,6 +17,7 @@ const defaultFilters: LeadFilters = {
 export default function AdminLeads() {
   const { leads, total, loading, fetchLeads, deleteLead, deleteLeads } = useLeads()
   const [filters, setFilters] = useState<LeadFilters>(defaultFilters)
+  const [dataSelecionada, setDataSelecionada] = useState('')
   const [page, setPage] = useState(0)
   const [sortCol, setSortCol] = useState<keyof Lead>('created_at')
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
@@ -108,9 +109,23 @@ export default function AdminLeads() {
     setSelected(new Set())
   }
 
+  function handleDataChange(val: string) {
+    setDataSelecionada(val)
+    setFilters(prev => ({ ...prev, dataInicio: val, dataFim: val }))
+    setPage(0)
+    setSelected(new Set())
+  }
+
+  function handleLimpar() {
+    setFilters(defaultFilters)
+    setDataSelecionada('')
+    setPage(0)
+  }
+
+  const temFiltro = filters.search || filters.perfil || dataSelecionada
+
   return (
     <div className={styles.page}>
-      {/* Notification */}
       {notification && (
         <div className={`notification notification-${notification.type}`}>
           {notification.type === 'success' ? '✓' : '✕'} {notification.msg}
@@ -130,10 +145,7 @@ export default function AdminLeads() {
             {exporting ? <div className="spinner" /> : '⬇'} Excel
           </button>
           {selected.size > 0 && (
-            <button
-              className="btn btn-danger"
-              onClick={() => setDeleteTarget([...selected])}
-            >
+            <button className="btn btn-danger" onClick={() => setDeleteTarget([...selected])}>
               🗑 Excluir {selected.size} selecionados
             </button>
           )}
@@ -161,36 +173,18 @@ export default function AdminLeads() {
           ))}
         </select>
 
-        <select
-          className={`form-input ${styles.filterSelect}`}
-          value={filters.consentimento}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => applyFilter('consentimento', e.target.value)}
-        >
-          <option value="">Todos os Consentimentos</option>
-          <option value="true">Com Consentimento</option>
-          <option value="false">Sem Consentimento</option>
-        </select>
+        <div className={styles.dateWrap}>
+          <label className={styles.dateLabel}>Data do formulário</label>
+          <input
+            type="date"
+            className={`form-input ${styles.filterDate}`}
+            value={dataSelecionada}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleDataChange(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="date"
-          className={`form-input ${styles.filterDate}`}
-          value={filters.dataInicio}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => applyFilter('dataInicio', e.target.value)}
-          title="Data início"
-        />
-        <input
-          type="date"
-          className={`form-input ${styles.filterDate}`}
-          value={filters.dataFim}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => applyFilter('dataFim', e.target.value)}
-          title="Data fim"
-        />
-
-        {(filters.search || filters.perfil || filters.consentimento || filters.dataInicio || filters.dataFim) && (
-          <button
-            className="btn btn-ghost"
-            onClick={() => { setFilters(defaultFilters); setPage(0) }}
-          >
+        {temFiltro && (
+          <button className="btn btn-ghost" onClick={handleLimpar}>
             ✕ Limpar
           </button>
         )}
@@ -221,15 +215,14 @@ export default function AdminLeads() {
                     <th onClick={() => handleSort('email')}>E-mail <SortIcon col="email" /></th>
                     <th>Telefone</th>
                     <th onClick={() => handleSort('perfil_disc')}>Perfil <SortIcon col="perfil_disc" /></th>
-                    <th onClick={() => handleSort('consentimento')}>Consentimento <SortIcon col="consentimento" /></th>
-                    <th onClick={() => handleSort('created_at')}>Data do Teste <SortIcon col="created_at" /></th>
+                    <th onClick={() => handleSort('created_at')}>Data do Formulário <SortIcon col="created_at" /></th>
                     <th style={{ width: 100 }}>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   {leads.length === 0 ? (
                     <tr>
-                      <td colSpan={8} style={{ textAlign: 'center', padding: '48px', color: 'var(--text-muted)' }}>
+                      <td colSpan={7} style={{ textAlign: 'center', padding: '48px', color: 'var(--text-muted)' }}>
                         Nenhum resultado encontrado.
                       </td>
                     </tr>
@@ -243,9 +236,7 @@ export default function AdminLeads() {
                           style={{ accentColor: 'var(--color-gold)', cursor: 'pointer' }}
                         />
                       </td>
-                      <td>
-                        <span className={styles.leadName}>{lead.nome}</span>
-                      </td>
+                      <td><span className={styles.leadName}>{lead.nome}</span></td>
                       <td style={{ color: 'var(--text-secondary)', fontSize: 13 }}>{lead.email}</td>
                       <td style={{ color: 'var(--text-secondary)', fontSize: 13 }}>{lead.telefone}</td>
                       <td>
@@ -256,11 +247,6 @@ export default function AdminLeads() {
                         ) : (
                           <span className={styles.pending}>Pendente</span>
                         )}
-                      </td>
-                      <td>
-                        <span className={lead.consentimento ? styles.consentYes : styles.consentNo}>
-                          {lead.consentimento ? '✓ Sim' : '✕ Não'}
-                        </span>
                       </td>
                       <td style={{ color: 'var(--text-primary)', fontSize: 13 }}>
                         {new Date(lead.created_at).toLocaleDateString('pt-BR')}
@@ -291,7 +277,6 @@ export default function AdminLeads() {
               </table>
             </div>
 
-            {/* Pagination */}
             {totalPages > 1 && (
               <div className={styles.pagination}>
                 <span className={styles.paginationInfo}>
@@ -321,7 +306,6 @@ export default function AdminLeads() {
         )}
       </div>
 
-      {/* Modals */}
       {detailLead && (
         <LeadDetailModal lead={detailLead} onClose={() => setDetailLead(null)} />
       )}

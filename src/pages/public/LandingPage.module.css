@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
-  min-height: 210px;
+  min-height: 250px;
 }
 
 .headerLogo {
@@ -74,7 +74,7 @@
 }
 
 .headerLogoDna {
-  height: 180px;
+  height: 215px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(200,169,110,0.2));

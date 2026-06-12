@@ -143,3 +143,18 @@
   .filtersRow { flex-direction: column; align-items: stretch; }
   .filterSelect, .filterDate { width: 100%; min-width: unset; }
 }
+
+.dateWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dateLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-left: 2px;
+}

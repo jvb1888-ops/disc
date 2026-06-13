@@ -81,9 +81,12 @@ export default function AdminLeads() {
   async function handleExportCSV() {
     setExporting(true)
     try {
-      const data = await fetchAllLeadsForExport(filters)
+      // Se há selecionados, exporta só eles; senão exporta todos filtrados
+      const data = selected.size > 0
+        ? leads.filter((l: Lead) => selected.has(l.id))
+        : await fetchAllLeadsForExport(filters)
       exportToCSV(data)
-      notify('CSV exportado com sucesso.')
+      notify(selected.size > 0 ? `${selected.size} registros exportados.` : 'CSV exportado com sucesso.')
     } catch { notify('Erro ao exportar.', 'error') }
     setExporting(false)
   }
@@ -91,9 +94,12 @@ export default function AdminLeads() {
   async function handleExportExcel() {
     setExporting(true)
     try {
-      const data = await fetchAllLeadsForExport(filters)
+      // Se há selecionados, exporta só eles; senão exporta todos filtrados
+      const data = selected.size > 0
+        ? leads.filter((l: Lead) => selected.has(l.id))
+        : await fetchAllLeadsForExport(filters)
       exportToExcel(data)
-      notify('Excel exportado com sucesso.')
+      notify(selected.size > 0 ? `${selected.size} registros exportados.` : 'Excel exportado com sucesso.')
     } catch { notify('Erro ao exportar.', 'error') }
     setExporting(false)
   }

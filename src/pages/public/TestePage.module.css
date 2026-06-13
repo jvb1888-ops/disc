@@ -17,13 +17,13 @@
 .header {
   padding: 20px 32px;
   border-bottom: 1px solid var(--color-border);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   position: relative;
   z-index: 10;
-  min-height: 220px;
+  min-height: 250px;
 }
 
 .headerLeft {
@@ -54,7 +54,7 @@
 }
 
 .headerLogoDna {
-  height: 180px;
+  height: 215px;
   width: auto;
   object-fit: contain;
 }
@@ -149,7 +149,7 @@
   font-family: var(--font-display);
   font-size: 48px;
   font-weight: 900;
-  color: var(--color-gold);
+  color: rgba(200,169,110,0.12);
   line-height: 1;
   margin-bottom: 8px;
   user-select: none;
@@ -196,6 +196,14 @@
   background: rgba(200,169,110,0.06) !important;
 }
 
+.optionLetter {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  min-width: 28px;
+  flex-shrink: 0;
+}
+
 .optionText {
   font-size: 15px;
   color: var(--text-primary);
@@ -221,4 +229,16 @@
   .questionCard { padding: 28px 20px; }
   .questionText { font-size: 18px; }
   .main { padding: 24px 16px 60px; }
+}
+
+.headerCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

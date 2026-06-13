@@ -7,11 +7,7 @@ function formatLead(lead: Lead) {
     'E-mail': lead.email,
     Telefone: lead.telefone,
     'Perfil DISC': lead.perfil_disc || 'Incompleto',
-    Consentimento: lead.consentimento ? 'Sim' : 'Não',
-    'Data Consentimento': lead.data_hora_consentimento
-      ? new Date(lead.data_hora_consentimento).toLocaleString('pt-BR')
-      : '',
-    'Data do Teste': new Date(lead.created_at).toLocaleString('pt-BR'),
+    'Data do Formulário': new Date(lead.created_at).toLocaleString('pt-BR'),
   }
 }
 
@@ -41,10 +37,8 @@ export function exportToExcel(leads: Lead[], filename = 'leads-disc') {
   const rows = leads.map(formatLead)
   const ws = XLSX.utils.json_to_sheet(rows)
 
-  // Column widths
   ws['!cols'] = [
-    { wch: 30 }, { wch: 35 }, { wch: 18 }, { wch: 14 },
-    { wch: 14 }, { wch: 22 }, { wch: 22 },
+    { wch: 30 }, { wch: 35 }, { wch: 18 }, { wch: 20 }, { wch: 22 },
   ]
 
   const wb = XLSX.utils.book_new()

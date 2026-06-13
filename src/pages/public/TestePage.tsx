@@ -78,8 +78,12 @@ export default function TestePage() {
           <div className={styles.logo}>D</div>
           <span className={styles.logoText}>DISC Assessment</span>
         </div>
-        <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogoDna} />
-        {nome && <span className={styles.userName}>Olá, {nome.split(' ')[0]} 👋</span>}
+        <div className={styles.headerCenter}>
+          <img src="/logo-dna.png" alt="DNA Comercial" className={styles.headerLogoDna} />
+        </div>
+        <div className={styles.headerRight}>
+          {nome && <span className={styles.userName}>Olá, {nome.split(' ')[0]} 👋</span>}
+        </div>
       </header>
 
       <main className={styles.main}>
@@ -120,9 +124,12 @@ export default function TestePage() {
                 onClick={() => handleSelect(opcao.perfil)}
                 style={{
                   animationDelay: `${idx * 0.06}s`,
-                  '--disc-color': 'var(--color-gold)',
+                  '--disc-color': getColor(opcao.perfil),
                 } as React.CSSProperties}
               >
+                <span className={styles.optionLetter} style={{ color: getColor(opcao.perfil) }}>
+                  {opcao.perfil}
+                </span>
                 <span className={styles.optionText}>{opcao.texto}</span>
                 {selected === opcao.perfil && (
                   <span className={styles.optionCheck}>✓</span>
@@ -159,4 +166,14 @@ export default function TestePage() {
       </main>
     </div>
   )
+}
+
+function getColor(perfil: DiscProfile): string {
+  const map: Record<DiscProfile, string> = {
+    D: 'var(--disc-d)',
+    I: 'var(--disc-i)',
+    S: 'var(--disc-s)',
+    C: 'var(--disc-c)',
+  }
+  return map[perfil]
 }

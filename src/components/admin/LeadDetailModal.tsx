@@ -59,20 +59,7 @@ export default function LeadDetailModal({ lead, onClose }: Props) {
               {new Date(lead.created_at).toLocaleString('pt-BR')}
             </span>
           </div>
-          <div className={styles.infoItem}>
-            <span className={styles.infoLabel}>Consentimento</span>
-            <span className={lead.consentimento ? styles.consentYes : styles.consentNo}>
-              {lead.consentimento ? '✓ Autorizado' : '✕ Não autorizado'}
-            </span>
-          </div>
-          {lead.data_hora_consentimento && (
-            <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Data do Consentimento</span>
-              <span className={styles.infoValue}>
-                {new Date(lead.data_hora_consentimento).toLocaleString('pt-BR')}
-              </span>
-            </div>
-          )}
+
         </div>
 
         <div className="divider" />
